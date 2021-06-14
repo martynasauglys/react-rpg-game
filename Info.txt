@@ -1,0 +1,155 @@
+
+
+Create simple game using react.js and node.js
+
+
+-- AUTHENTICATION
+
+user should be able to register and login to app
+
+-- REGISTRATION
+
+in registration window user should provide:
+username (max length 20, min length 4)
+password one (max 20, min 4, should include at least one number)
+password two (max 20, min 4, should include at least one number)
+both passwords should match
+All validations should be made in express middleware and return messages according to invalid fields
+passwrod should be encrypted while saving to database
+
+When user object passes validations it is saved to mongodb with these schema keys:
+image: - string (add your own image of your player hero)
+username - string
+password - string (password should be encrypted)
+health - number (default is 100)
+gold - number (default value is 100)
+inventory - array (empty)
+secretKey - string (generated autmatically when you create new user)
+
+user should not be able to register if username already ecists in database
+
+-- LOGIN
+
+in login window user should provide:
+usernmae (max length 20, min length 4)
+password (max 20, min 4, should include at least one number)
+validate inputs in back-end middleware
+
+if user logs in successfully he gets secretKey as response (it is needed to update user database info later)
+
+-- GAME WINDOW
+
+when user logs in he is navigated to game window - place where all routes can be seen
+in game window he should see:
+navigation to SHOP
+navigation to USER INVENTORY
+navigation to ARENA
+navigation to LEADERS BOARD
+also amount of GOLD user has in his account
+show player health in hame window to
+(navigation should be made with react-router-dom)
+(all navigatin links can be boring divs with text or some kind of puctures - you are the boss when it comes to styling)
+
+-- SHOP
+
+in shop user can buy weapons, armors and potions for his hero
+while item is bought it is added to user inventory to mongodb
+for example if i buy last armor this object is added to mongodb users inventory: 
+{defence: 30, price: 800, sellPrice: 300, image: "YOUR LINK", id: "randomly generated id"}
+also while buying product don't forget to check if user has enought gold
+
+Armors
+armors adds defence to hero while he is fighting monsters
+in shop user can buy three different armors with these stats:
+1. defence: 3, price: 50, sellPrice: 10, image: (add your own link to have armor image), type: armor
+2. defence: 7, price: 250, sellPrice: 100, image: (add your own link to have armor image), type: armor
+3. defence: 8, price: 800, sellPrice: 300, image: (add your own link to have armor image), type: armor
+
+Weapons
+weapons defines how mutch damage hero does to monster and have special effects
+1. name: sword, damage: 8, price: 40, sellPrice: 5, special: has 20% chance to block enemy attack, image: (add your own link to have armor image), type: weapon
+2. name: bow,  damage: 6, price: 300, sellPrice: 80, special: has 30% chance to do double damage, image: (add your own link to have armor image), type: weapon
+3. name: magic wand,  damage: 5, price: 1000, sellPrice: 400, special: has 40% chance to heal hero on enemy attack by 10hit points, image: (add your own link to have armor image), type: weapon
+
+Potions
+potions is needed to heal player during the battle
+1. heals: 20, price: 10, sellPrice: 5, image: (add your own link to have armor image), type: potion
+1. heals: 35, price: 30, sellPrice: 10, image: (add your own link to have armor image), type: potion
+1. heals: 50, price: 60, sellPrice: 20, image: (add your own link to have armor image), type: potion
+
+-- USER INVENTORY
+
+user inventory shows all items user has (weapons, armors, potions) 
+only from inventory user can sell items
+when item is sold database should be updated
+(removed item from inventory by its id also add gold to user regarding item sellPrice)
+
+-- LEADERS BOARD
+
+in leaders board you can see table with all registered users and amount of gold each one has
+
+when you click on particular user you should be navigated to page where all user info is shown (image, name, health, gold, inventory)
+(use username as react-router-dom dynamic param)
+
+-- ARENA
+
+arena is the place where hero fights against various monsters
+
+player and monster should both have health bars representing health left
+100 health points each (when battle starts)
+(player heath is taken from mongodb database)
+
+game goes like this: 
+player clicks button "hit" and hits enemy with random damage from 0 to damage currently equiped weapon makes
+for example if i have swrod with damage 8, my hit to enemy should be random number from 0 to 8
+then enemy automatically hits player back with random damage from 0 to number of damage it makes
+when one enemy is defeated, second random enemy appear with full health bar (player health does not restore afted enemy defeated)
+
+player should be able to change weapon and armour he is equipped with (include inventory component or thing of some way to do it)
+(remember that each weapon should have its own effect on player)
+on every hit player gets random amount of gold - from 0 to 10
+
+while in the battle player should be able to drink potions to restore own health
+
+when player leaves arena and enters back his health should not be restored to 100
+player health is updated on every enemy hit or potion use and saved to mongodb database
+
+in arena player hero image should be shown to
+
+player should be able to equip armor
+armor defends player on every monster hit by random number from 0 to particular armor defence stat
+
+POSSIBLE ENEMIES (YOU CAN ALSO USE YOUR OWN RANDOM ENEMIES)
+
+    {
+        name: "Goblin",
+        image: "https://i.imgur.com/yBh7Fn4.png",
+        damage: 12
+    },
+    {
+        name: "Troll",
+        image: "https://i.pinimg.com/originals/8d/7f/d8/8d7fd8ae9fcd6060497c628e1c7944b4.jpg",
+        damage: 8
+    },
+    {
+        name: "Witch",
+        image: "https://i.pinimg.com/originals/c0/da/c0/c0dac0da46b4c59534cf898b1967d523.png",
+        damage: 15
+    }
+
+
+-- GENERAL NOTES
+
+when user logs in to game he should get secret key from back-end
+save that secret key to local storage and send it to back-end on every database update as authentication proof
+
+try making game design as clean as possible, use your creative mind
+bonus poins for fight animations (for example enemy shakes when you hit him)
+
+bonus points for functionality for user to be able change username
+
+bonus points for functionality for user to be able change his hero image
+
+Think of what happens if player dies
+
+have fun
