@@ -1,0 +1,4 @@
+.navigationContainer {
+  display: flex;
+  flex-direction: column;
+}

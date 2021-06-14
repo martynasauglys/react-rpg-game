@@ -1,23 +1,43 @@
-import logo from './logo.svg';
 import './App.css';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import Register from './Views/Register';
+import Login from './Views/Login';
+import Header from './Components/Header';
+import GameWindow from './Views/GameWindow';
+import Arena from './Views/Arena';
+import Leaderboard from './Views/Leaderboard';
+import Inventory from './Views/Inventory';
+import Shop from './Views/Shop';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='App'>
+      <Router>
+        {localStorage.getItem('token') ? <Header /> : null}
+        <Switch>
+          <Route exact path='/'>
+            <Login />
+          </Route>
+          <Route path='/register'>
+            <Register />
+          </Route>
+          <Route path='/game-window'>
+            <GameWindow />
+          </Route>
+          <Route path='/shop'>
+            <Shop />
+          </Route>
+          <Route path='/arena'>
+            <Arena />
+          </Route>
+          <Route path='/inventory'>
+            <Inventory />
+          </Route>
+          <Route path='/leaderboard'>
+            <Leaderboard />
+          </Route>
+        </Switch>
+      </Router>
     </div>
   );
 }
