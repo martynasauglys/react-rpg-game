@@ -3,6 +3,7 @@ const User = require('./UserModel');
 
 authenticate = async (req, res, next) => {
   let token = req.header('token');
+
   try {
     // Verify JWT
     let decodedId = await jwt.verify(token, 'zazmas');
