@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from 'axios';
-import { useHistory } from 'react-router-dom';
+import { useHistory, Link } from 'react-router-dom';
 
 function Header() {
   const history = useHistory();
@@ -23,7 +23,9 @@ function Header() {
   return (
     <header>
       <div>
-        <div>LOGO</div>
+        <div>
+          <Link to='/game-window'>LOGO</Link>
+        </div>
         <button onClick={handleClick}>Logout</button>
       </div>
     </header>

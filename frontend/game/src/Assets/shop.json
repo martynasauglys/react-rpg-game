@@ -1,0 +1,92 @@
+[
+  {
+    "id": 1,
+    "type": "Armor",
+    "name": "Bronze Armor",
+    "abilities": {
+      "defence": 3
+    },
+    "price": 50,
+    "sellPrice": 10
+  },
+  {
+    "id": 2,
+    "type": "Armor",
+    "name": "Silver Armor",
+    "abilities": {
+      "defence": 7
+    },
+    "price": 250,
+    "sellPrice": 100
+  },
+  {
+    "id": 3,
+    "type": "Armor",
+    "name": "Golden Armor",
+    "abilities": {
+      "defence": 8
+    },
+    "price": 800,
+    "sellPrice": 300
+  },
+  {
+    "id": 4,
+    "type": "Weapon",
+    "name": "Sword",
+    "abilities": {
+      "damage": 8
+    },
+    "price": 40,
+    "sellPrice": 5
+  },
+  {
+    "id": 5,
+    "type": "Weapon",
+    "name": "Bow",
+    "abilities": {
+      "damage": 6
+    },
+    "price": 300,
+    "sellPrice": 80
+  },
+  {
+    "id": 6,
+    "type": "Weapon",
+    "name": "Magic Wand",
+    "abilities": {
+      "damage": 5
+    },
+    "price": 1000,
+    "sellPrice": 400
+  },
+  {
+    "id": 7,
+    "type": "Potion",
+    "name": "+20 Health",
+    "abilities": {
+      "heals": 20
+    },
+    "price": 10,
+    "sellPrice": 5
+  },
+  {
+    "id": 8,
+    "type": "Potion",
+    "name": "+30 Health",
+    "abilities": {
+      "heals": 35
+    },
+    "price": 30,
+    "sellPrice": 10
+  },
+  {
+    "id": 9,
+    "type": "Potion",
+    "name": "+50 Health",
+    "abilities": {
+      "heals": 40
+    },
+    "price": 60,
+    "sellPrice": 20
+  }
+]

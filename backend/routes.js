@@ -10,4 +10,12 @@ router.post('/login', UserController.login);
 router.get('/logout', UserMiddleware.authenticate, UserController.logout);
 router.get('/getUser', UserMiddleware.authenticate, UserController.getUserData);
 
+//
+router.put('/buyItem', UserMiddleware.authenticate, UserController.userBuyItem);
+router.put(
+  '/sellItem',
+  UserMiddleware.authenticate,
+  UserController.userSellItem
+);
+
 module.exports = router;

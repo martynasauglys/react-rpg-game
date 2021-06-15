@@ -25,6 +25,14 @@ const UserSchema = new mongoose.Schema({
     default: 100,
   },
   inventory: [],
+  fightsHistory: [
+    {
+      user: String,
+      enemy: String,
+      userWon: Boolean,
+      timeStamp: Number,
+    },
+  ],
   sessionTokens: [
     {
       token: String,

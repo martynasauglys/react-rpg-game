@@ -61,9 +61,41 @@ getUserData = (req, res) => {
   res.json(user);
 };
 
+userBuyItem = async (req, res) => {
+  let token = req.token;
+  let user = req.user;
+  let item = req.body;
+  let itemPrice = req.body.price;
+
+  try {
+    await user.update({ $push: { inventory: item } });
+    await user.update({ $inc: { gold: -itemPrice } });
+    res.json(`${item} added`);
+  } catch (e) {
+    res.status(400).json(e);
+  }
+};
+
+userSellItem = async (req, res) => {
+  let token = req.token;
+  let user = req.user;
+  let sellPrice = req.body.sellPrice;
+  let itemId = req.body.id;
+
+  try {
+    await user.update({ $pull: { inventory: { id: itemId } } });
+    await user.update({ $inc: { gold: +sellPrice } });
+    res.json('item removed');
+  } catch (e) {
+    res.status(400).json(e);
+  }
+};
+
 module.exports = {
   signUp,
   login,
   logout,
   getUserData,
+  userBuyItem,
+  userSellItem,
 };
