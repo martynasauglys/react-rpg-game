@@ -7,6 +7,7 @@ function Arena() {
   const [user, setUser] = useState({});
   const [enemyHealth, setEnemyHealth] = useState(100);
   const [userHealth, setUserHealth] = useState(0);
+
   const [attackHappening, setAttackHappening] = useState(false);
   const [fightOver, setFightOver] = useState(false);
 
@@ -29,25 +30,38 @@ function Arena() {
   }, []);
 
   function handleAttack() {
-    let userDamage = Math.floor(Math.random() * 12);
     if (userHealth <= 0 || enemyHealth <= 0) {
       setFightOver(true);
+      if (userHealth < 0) {
+        setUserHealth(0);
+      } else if (enemyHealth < 0) {
+        setEnemyHealth(0);
+      }
     } else {
       setAttackHappening(true);
-      setEnemyHealth(enemyHealth - userDamage);
+      userAttack();
       setTimeout(() => {
         enemyAttack();
+        setAttackHappening(false);
       }, 1000);
     }
   }
 
+  function userAttack() {
+    let userDamage = Math.floor(Math.random() * 50);
+    setEnemyHealth(enemyHealth - userDamage);
+    checkHealth();
+  }
+
   function enemyAttack() {
     let enemyDamage = Math.floor(Math.random() * enemy.damage);
+    setUserHealth(userHealth - enemyDamage);
+    checkHealth();
+  }
+
+  function checkHealth() {
     if (userHealth <= 0 || enemyHealth <= 0) {
-      setFightOver(true);
-    } else {
-      setUserHealth(userHealth - enemyDamage);
-      setAttackHappening(false);
+      return setFightOver(true);
     }
   }
   return (

@@ -1,4 +1,9 @@
+main {
+  height: calc(100vh - 55px);
+}
+
 .container {
+  padding-top: 50px;
   display: flex;
   flex-direction: row;
   justify-content: center;

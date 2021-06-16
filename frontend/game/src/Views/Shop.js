@@ -13,7 +13,9 @@ function Shop() {
             id={item.id}
             type={item.type}
             name={item.name}
-            abilities={item.abilities[0]}
+            defence={item.defence}
+            damage={item.damage}
+            heals={item.heals}
             price={item.price}
             sellPrice={item.sellPrice}
           />

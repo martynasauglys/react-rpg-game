@@ -5,11 +5,14 @@ const jwt = require('jsonwebtoken');
 
 const signUp = async (req, res) => {
   let user = new User(req.body);
+
   try {
     let alreadyExist = await User.findOne({ username: req.body.username });
     if (alreadyExist)
       return res.json({ success: false, msg: 'Username already exists' });
+
     let createdUser = await user.save();
+
     res.json({ createdUser, msg: 'User created successfully', success: true });
   } catch (err) {
     res.status(400).json(err);
@@ -19,8 +22,8 @@ const signUp = async (req, res) => {
 const login = async (req, res) => {
   try {
     let user = await User.findOne({ username: req.body.username });
+
     if (!user) throw "User doesn't exist";
-    // Check password
     let passwordMatched = await bcrypt.compare(
       req.body.password,
       user.password
@@ -28,15 +31,12 @@ const login = async (req, res) => {
 
     if (!passwordMatched)
       return res.json({ success: false, msg: 'Incorrect Password' });
-
-    // Create JWT Token from User._id and add to User
     let token = await jwt
       .sign({ _id: user._id.toHexString() }, 'zazmas')
       .toString();
     user.sessionTokens.push({ token });
     await user.save();
 
-    // Send response with token in headers
     return res
       .header('token', token)
       .json({ success: true, msg: 'User Logged', token: token });
@@ -62,7 +62,6 @@ getUserData = (req, res) => {
 };
 
 userBuyItem = async (req, res) => {
-  let token = req.token;
   let user = req.user;
   let item = req.body;
   let itemPrice = req.body.price;
@@ -70,14 +69,13 @@ userBuyItem = async (req, res) => {
   try {
     await user.update({ $push: { inventory: item } });
     await user.update({ $inc: { gold: -itemPrice } });
-    res.json(`${item} added`);
+    res.json('item added');
   } catch (e) {
     res.status(400).json(e);
   }
 };
 
 userSellItem = async (req, res) => {
-  let token = req.token;
   let user = req.user;
   let sellPrice = req.body.sellPrice;
   let itemId = req.body.id;
@@ -91,6 +89,18 @@ userSellItem = async (req, res) => {
   }
 };
 
+userChangeImage = async (req, res) => {
+  let user = req.user;
+  let imageNew = req.body.image;
+
+  try {
+    await user.update({ image: imageNew });
+    res.json('image updated');
+  } catch (e) {
+    res.status(400).json(e);
+  }
+};
+
 module.exports = {
   signUp,
   login,
@@ -98,4 +108,5 @@ module.exports = {
   getUserData,
   userBuyItem,
   userSellItem,
+  userChangeImage,
 };

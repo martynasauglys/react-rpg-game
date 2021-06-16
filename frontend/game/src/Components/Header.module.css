@@ -1,0 +1,19 @@
+header {
+  width: 100%;
+}
+
+.header_container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 15px 10px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.header_home_btn a {
+  text-decoration: none;
+  color: black;
+  font-size: 1.4em;
+  font-weight: 600;
+  font-family: 'MedievalSharp', cursive;
+}

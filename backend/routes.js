@@ -3,6 +3,7 @@ const router = require('express').Router();
 
 // Middlewares
 const UserMiddleware = require('./User/Authenticator');
+const User = require('./User/UserModel');
 
 // User routes
 router.post('/signup', UserController.signUp);
@@ -16,6 +17,11 @@ router.put(
   '/sellItem',
   UserMiddleware.authenticate,
   UserController.userSellItem
+);
+router.put(
+  '/changeImage',
+  UserMiddleware.authenticate,
+  UserController.userChangeImage
 );
 
 module.exports = router;

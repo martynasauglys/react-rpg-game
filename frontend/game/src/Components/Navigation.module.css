@@ -1,4 +1,12 @@
-.navigationContainer {
+.navigation_container {
   display: flex;
   flex-direction: column;
+}
+
+.navigation_container a {
+  margin-bottom: 10px;
+  text-decoration: none;
+  color: black;
+  font-size: 2em;
+  font-family: 'MedievalSharp', cursive;
 }
