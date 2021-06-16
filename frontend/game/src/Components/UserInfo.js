@@ -7,8 +7,6 @@ function UserInfo() {
   const [changeImage, setChangeImage] = useState(false);
   const [imageURL, setImageURL] = useState('');
 
-  const [value, setValue] = useState(0);
-
   let token = localStorage.getItem('token');
 
   useEffect(() => {
@@ -37,12 +35,7 @@ function UserInfo() {
       )
       .then((res) => {
         console.log(res);
-        blah();
       });
-  }
-
-  function blah() {
-    return () => setValue((value) => value + 1);
   }
 
   return (
