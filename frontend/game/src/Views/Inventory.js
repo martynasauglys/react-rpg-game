@@ -24,7 +24,7 @@ function Inventory() {
   }
 
   return (
-    <div>
+    <main>
       Inventory
       <div>
         {inventory.map((item) => (
@@ -35,7 +35,7 @@ function Inventory() {
           />
         ))}
       </div>
-    </div>
+    </main>
   );
 }
 

@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 const User = require('./UserModel');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+const { getAlgorithms } = require('json-web-token');
 
 const signUp = async (req, res) => {
   let user = new User(req.body);
@@ -61,6 +62,15 @@ getUserData = (req, res) => {
   res.json(user);
 };
 
+getAllUsers = async (req, res) => {
+  try {
+    let users = await User.find({});
+    res.json(users);
+  } catch (e) {
+    console.log(e);
+  }
+};
+
 userBuyItem = async (req, res) => {
   let user = req.user;
   let item = req.body;
@@ -101,6 +111,17 @@ userChangeImage = async (req, res) => {
   }
 };
 
+removeItem = async (req, res) => {
+  let user = req.user;
+  let itemId = req.body.id;
+
+  try {
+    await user.update({ $pull: { inventory: { id: itemId } } });
+  } catch (e) {
+    res.status(400).json(e);
+  }
+};
+
 module.exports = {
   signUp,
   login,
@@ -109,4 +130,6 @@ module.exports = {
   userBuyItem,
   userSellItem,
   userChangeImage,
+  removeItem,
+  getAllUsers,
 };

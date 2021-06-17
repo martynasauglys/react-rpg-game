@@ -2,7 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import { useHistory, Link } from 'react-router-dom';
 
-import styles from '../Components/Header.module.css';
+import styles from '../Styles/Header.module.css';
 
 function Header() {
   const history = useHistory();

@@ -10,6 +10,7 @@ router.post('/signup', UserController.signUp);
 router.post('/login', UserController.login);
 router.get('/logout', UserMiddleware.authenticate, UserController.logout);
 router.get('/getUser', UserMiddleware.authenticate, UserController.getUserData);
+router.get('/getAllUsers', UserController.getAllUsers);
 
 //
 router.put('/buyItem', UserMiddleware.authenticate, UserController.userBuyItem);
@@ -22,6 +23,11 @@ router.put(
   '/changeImage',
   UserMiddleware.authenticate,
   UserController.userChangeImage
+);
+router.put(
+  '/removeItem',
+  UserMiddleware.authenticate,
+  UserController.removeItem
 );
 
 module.exports = router;

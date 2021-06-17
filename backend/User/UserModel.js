@@ -19,6 +19,7 @@ const UserSchema = new mongoose.Schema({
   health: {
     type: Number,
     default: 100,
+    max: 100,
   },
   gold: {
     type: Number,

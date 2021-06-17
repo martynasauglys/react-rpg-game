@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import styles from './UserInfo.module.css';
+import styles from '../Styles/UserInfo.module.css';
+import { useHistory } from 'react-router-dom';
 
 function UserInfo() {
   const [user, setUser] = useState({});
   const [changeImage, setChangeImage] = useState(false);
   const [imageURL, setImageURL] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
+  const history = useHistory();
 
   let token = localStorage.getItem('token');
 
@@ -23,24 +26,32 @@ function UserInfo() {
   }, []);
 
   function handleImageChange() {
-    axios
-      .put(
-        'http://localhost:3001/changeImage',
-        { image: imageURL },
-        {
-          headers: {
-            token: token,
-          },
-        }
-      )
-      .then((res) => {
-        console.log(res);
-      });
+    if (imageURL) {
+      axios
+        .put(
+          'http://localhost:3001/changeImage',
+          { image: imageURL },
+          {
+            headers: {
+              token: token,
+            },
+          }
+        )
+        .then((res) => {
+          console.log(res);
+          history.go(0);
+        });
+    } else {
+      setErrorMessage('Please add a link');
+    }
   }
 
   return (
     <div className={styles.userBox}>
-      <img src={user.image} className={styles.userImage} />
+      <div
+        className={styles.user_image}
+        style={{ backgroundImage: `url(${user.image})` }}
+      ></div>
       <button onClick={() => setChangeImage(true)}>Change Image</button>
       {changeImage ? (
         <div className={styles.change_image_container}>
@@ -51,13 +62,15 @@ function UserInfo() {
             onChange={(e) => setImageURL(e.target.value)}
           />
           <button onClick={handleImageChange}>Change!</button>
+          {errorMessage}
         </div>
       ) : (
         ''
       )}
       <h2>{user.username}</h2>
-      <p>Gold: {user.gold}</p>
-      <p>Health: {user.health}</p>
+      <p>
+        {user.gold} 💰 {user.health} ❤️
+      </p>
     </div>
   );
 }

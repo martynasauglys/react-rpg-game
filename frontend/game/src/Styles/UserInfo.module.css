@@ -1,0 +1,17 @@
+.user_image {
+  width: 200px;
+  height: 200px;
+  margin-bottom: 15px;
+  border-radius: 50%;
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.userBox {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-right: 30px;
+}
