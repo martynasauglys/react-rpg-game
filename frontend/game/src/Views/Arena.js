@@ -136,7 +136,7 @@ function Arena() {
       axios
         .put(
           'http://localhost:3001/updateGold',
-          { add: 100 },
+          { add: enemy.reward },
           {
             headers: {
               token: token,
