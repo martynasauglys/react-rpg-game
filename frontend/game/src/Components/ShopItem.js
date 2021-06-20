@@ -55,7 +55,7 @@ function ShopItem({
       setUserHasItem(true);
       setButton('OWNED');
     }
-  }, [userInventory]);
+  }, [userInventory, id]);
 
   function handleClick() {
     let token = localStorage.getItem('token');
