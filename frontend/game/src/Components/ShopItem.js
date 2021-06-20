@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { useHistory } from 'react-router-dom';
 import styles from '../Styles/ShopItem.module.css';
 import ReactTooltip from 'react-tooltip';
 
@@ -16,13 +15,13 @@ function ShopItem({
   image,
   description,
 }) {
-  const history = useHistory();
-
   const [userGold, setUserGold] = useState(0);
   const [errorMessage, setErrorMessage] = useState('');
   const [userInventory, setUserInventory] = useState([]);
   const [button, setButton] = useState(`${price} GOLD`);
   const [userHasItem, setUserHasItem] = useState(false);
+
+  const [updated, setUpdated] = useState(false);
 
   let data = {
     id: id,
@@ -47,20 +46,19 @@ function ShopItem({
       .then((res) => {
         setUserGold(res.data.gold);
         setUserInventory(res.data.inventory);
-        console.log(image);
+        setUpdated(false);
       });
-  }, []);
+  }, [updated]);
 
   useEffect(() => {
     if (userInventory.some((item) => item.id === id)) {
       setUserHasItem(true);
       setButton('OWNED');
     }
-  });
+  }, [userInventory]);
 
   function handleClick() {
     let token = localStorage.getItem('token');
-    console.log(userHasItem);
 
     if (userGold >= price) {
       axios
@@ -70,7 +68,7 @@ function ShopItem({
           },
         })
         .then((res) => {
-          history.go(0);
+          setUpdated(true);
         });
     } else {
       setErrorMessage(`You don't have enought gold!`);

@@ -122,6 +122,49 @@ removeItem = async (req, res) => {
   }
 };
 
+getUser = async (req, res) => {
+  const id = req.params.id;
+
+  try {
+    await User.findById(id).then((data) => res.json(data));
+  } catch (e) {
+    res.status(400).json(e);
+  }
+};
+
+matchResults = async (req, res) => {
+  let user = req.user;
+  let record = req.body;
+
+  try {
+    await user.update({ $push: { fightsHistory: record } });
+  } catch (e) {
+    res.status(400).json(e);
+  }
+};
+
+updateHealth = async (req, res) => {
+  let user = req.user;
+  let newHealth = req.body.health;
+
+  try {
+    await user.update({ health: newHealth });
+  } catch (e) {
+    res.status(400).json(e);
+  }
+};
+
+updateGold = async (req, res) => {
+  let user = req.user;
+  let add = req.body.add;
+
+  try {
+    await user.update({ $inc: { gold: +add } });
+  } catch (e) {
+    res.status(400).json(e);
+  }
+};
+
 module.exports = {
   signUp,
   login,
@@ -132,4 +175,8 @@ module.exports = {
   userChangeImage,
   removeItem,
   getAllUsers,
+  getUser,
+  matchResults,
+  updateHealth,
+  updateGold,
 };

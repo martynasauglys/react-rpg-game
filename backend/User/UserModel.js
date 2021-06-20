@@ -28,7 +28,6 @@ const UserSchema = new mongoose.Schema({
   inventory: [],
   fightsHistory: [
     {
-      user: String,
       enemy: String,
       userWon: Boolean,
       timeStamp: Number,

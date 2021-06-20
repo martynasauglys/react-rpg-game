@@ -1,10 +1,8 @@
 import React from 'react';
 import axios from 'axios';
-import { useHistory } from 'react-router-dom';
 import styles from '../Styles/ShopItem.module.css';
 
 function InventoryItemSell({ id, name, sellPrice, image }) {
-  const history = useHistory();
   function handleClick() {
     let token = localStorage.getItem('token');
     axios
@@ -19,7 +17,6 @@ function InventoryItemSell({ id, name, sellPrice, image }) {
       )
       .then((res) => {
         console.log(res);
-        history.go(0);
       });
   }
   return (

@@ -10,6 +10,7 @@ import Arena from './Views/Arena';
 import Leaderboard from './Views/Leaderboard';
 import Inventory from './Views/Inventory';
 import Shop from './Views/Shop';
+import User from './Views/User';
 
 function App() {
   const [user, setUser] = useState({});
@@ -25,7 +26,7 @@ function App() {
       .then((res) => {
         setUser(res.data);
       });
-  }, []);
+  }, [user]);
 
   return (
     <div className='App'>
@@ -42,16 +43,19 @@ function App() {
             <GameWindow />
           </Route>
           <Route path='/shop'>
-            <Shop gold={user.gold}/>
+            <Shop gold={user.gold} />
           </Route>
           <Route path='/arena'>
             <Arena />
           </Route>
           <Route path='/inventory'>
-            <Inventory />
+            <Inventory inventory={user.inventory} />
           </Route>
           <Route path='/leaderboard'>
             <Leaderboard />
+          </Route>
+          <Route path='/user/:id'>
+            <User />
           </Route>
         </Switch>
       </Router>

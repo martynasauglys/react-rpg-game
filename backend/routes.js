@@ -11,6 +11,7 @@ router.post('/login', UserController.login);
 router.get('/logout', UserMiddleware.authenticate, UserController.logout);
 router.get('/getUser', UserMiddleware.authenticate, UserController.getUserData);
 router.get('/getAllUsers', UserController.getAllUsers);
+router.get('/user/:id', UserController.getUser);
 
 //
 router.put('/buyItem', UserMiddleware.authenticate, UserController.userBuyItem);
@@ -28,6 +29,21 @@ router.put(
   '/removeItem',
   UserMiddleware.authenticate,
   UserController.removeItem
+);
+router.put(
+  '/matchResults',
+  UserMiddleware.authenticate,
+  UserController.matchResults
+);
+router.put(
+  '/updateHealth',
+  UserMiddleware.authenticate,
+  UserController.updateHealth
+);
+router.put(
+  '/updateGold',
+  UserMiddleware.authenticate,
+  UserController.updateGold
 );
 
 module.exports = router;

@@ -18,11 +18,7 @@ function Inventory() {
         setInventory(res.data.inventory);
         console.log(inventory);
       });
-  }, []);
-
-  function handleClick() {
-    console.log(inventory);
-  }
+  }, [inventory]);
 
   return (
     <main>

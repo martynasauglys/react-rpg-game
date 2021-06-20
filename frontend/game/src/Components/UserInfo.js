@@ -1,14 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import styles from '../Styles/UserInfo.module.css';
-import { useHistory } from 'react-router-dom';
 
 function UserInfo() {
   const [user, setUser] = useState({});
   const [changeImage, setChangeImage] = useState(false);
   const [imageURL, setImageURL] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
-  const history = useHistory();
+  const [userDead, setUserDead] = useState(false);
 
   let token = localStorage.getItem('token');
 
@@ -23,7 +22,12 @@ function UserInfo() {
         console.log(res.data);
         setUser(res.data);
       });
-  }, []);
+    if (user.health === 0) {
+      setUserDead(true);
+    } else {
+      setUserDead(false);
+    }
+  }, [imageURL, token, user.health, userDead]);
 
   function handleImageChange() {
     if (imageURL) {
@@ -39,11 +43,25 @@ function UserInfo() {
         )
         .then((res) => {
           console.log(res);
-          history.go(0);
+          setImageURL('');
         });
     } else {
       setErrorMessage('Please add a link');
     }
+  }
+
+  function reviveUser() {
+    axios.put(
+      'http://localhost:3001/updateHealth',
+      { health: 100 },
+      {
+        headers: {
+          token: token,
+        },
+      }
+    );
+
+    setUserDead(false);
   }
 
   return (
@@ -72,6 +90,12 @@ function UserInfo() {
       <p className={styles.stats}>
         {user.gold} 💰 {user.health} ❤️
       </p>
+      {userDead ? (
+        <div className={styles.user_dead_box}>
+          <p>You're dead</p>
+          <button onClick={reviveUser}>Revive</button>
+        </div>
+      ) : null}
     </div>
   );
 }

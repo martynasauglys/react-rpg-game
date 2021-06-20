@@ -33,7 +33,9 @@ function Header() {
           )}
         </div>
         {localStorage.getItem('token') ? (
-          <button onClick={handleClick}>Logout</button>
+          <button className={styles.logout_button} onClick={handleClick}>
+            Logout
+          </button>
         ) : (
           ''
         )}

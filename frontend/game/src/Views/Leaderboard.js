@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import styles from '../Styles/Leaderboard.module.css';
+import { useHistory } from 'react-router-dom';
 
 function Leaderboard() {
   const [users, setUsers] = useState([]);
@@ -13,6 +14,9 @@ function Leaderboard() {
       setUsers(filtered);
     });
   }, []);
+
+  const history = useHistory();
+
   return (
     <main>
       <div className={styles.container}>
@@ -23,6 +27,7 @@ function Leaderboard() {
                 <div
                   className={styles.user_image}
                   style={{ backgroundImage: `url(${user.image})` }}
+                  onClick={() => history.push(`/user/${user._id}`)}
                 ></div>
                 {user.username}
               </td>

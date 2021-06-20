@@ -1,0 +1,54 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.user_box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 50px;
+  padding: 30px;
+  border: 5px solid rgb(233, 204, 141);
+  background-color: rgb(255, 239, 195);
+}
+
+.user_box h2 {
+  font-family: 'MedievalSharp', cursive;
+  margin-bottom: 10px;
+  font-size: 2em;
+}
+.user_box h3 {
+  font-family: 'MedievalSharp', cursive;
+}
+
+.user_image {
+  width: 200px;
+  height: 200px;
+  margin-bottom: 15px;
+  border-radius: 50%;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.table {
+  margin-top: 30px;
+}
+
+.won {
+  color: rgb(111, 212, 111);
+}
+
+.lost {
+  color: rgb(233, 88, 88);
+}
+
+.user_dead_box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

@@ -10,12 +10,7 @@ function ArenaFighterCard({ image, name, health }) {
       ></div>
       <h2 className={styles.name}>{name}</h2>
       <div className='health'>
-        <img
-          src='https://upload.wikimedia.org/wikipedia/commons/7/70/Symbolic_Love_Heart.png'
-          alt=''
-          style={{ width: '40px' }}
-        />
-        <h3>{health}</h3>
+        <h3>{health} ❤️</h3>
       </div>
     </div>
   );

@@ -1,5 +1,4 @@
 import RegisterForm from '../Components/RegisterForm';
-import { Link } from 'react-router-dom';
 import styles from '../Styles/Login.module.css';
 
 function Register() {
