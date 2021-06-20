@@ -1,16 +1,15 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import LoginForm from '../Components/LoginForm';
+import styles from '../Styles/Login.module.css';
 
 function Login() {
   return (
-    <div>
+    <main className={styles.login_main}>
       <h1>The most amazing online RPG game you ever play</h1>
-      <LoginForm />
-      <p>
-        Don't have an account? <Link to='/register'>Register</Link>
-      </p>
-    </div>
+      <div className={styles.container}>
+        <LoginForm />
+      </div>
+    </main>
   );
 }
 

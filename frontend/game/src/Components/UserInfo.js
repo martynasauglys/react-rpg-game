@@ -49,13 +49,14 @@ function UserInfo() {
   return (
     <div className={styles.userBox}>
       <div
+        onClick={() => setChangeImage(!changeImage)}
         className={styles.user_image}
         style={{ backgroundImage: `url(${user.image})` }}
       ></div>
-      <button onClick={() => setChangeImage(true)}>Change Image</button>
       {changeImage ? (
         <div className={styles.change_image_container}>
           <input
+            className={styles.input}
             type='text'
             placeholder='Paste image url'
             value={imageURL}
@@ -67,8 +68,8 @@ function UserInfo() {
       ) : (
         ''
       )}
-      <h2>{user.username}</h2>
-      <p>
+      <h2 className={styles.username}>{user.username}</h2>
+      <p className={styles.stats}>
         {user.gold} 💰 {user.health} ❤️
       </p>
     </div>

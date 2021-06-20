@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useHistory, Link } from 'react-router-dom';
 import axios from 'axios';
+import styles from '../Styles/Login.module.css';
 
 function RegisterForm() {
   const [username, setUsername] = useState('');
@@ -61,8 +62,11 @@ function RegisterForm() {
         </div>
         <div className='form-control'>
           <button type='submit'>Register</button>
-          <p>{errorMsg}</p>
+          <p className={styles.error_message}>{errorMsg}</p>
         </div>
+        <p>
+          Already have an account? <Link to='/'>Login</Link>
+        </p>
       </form>
     </div>
   );

@@ -1,3 +1,5 @@
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import './App.css';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Register from './Views/Register';
@@ -10,10 +12,25 @@ import Inventory from './Views/Inventory';
 import Shop from './Views/Shop';
 
 function App() {
+  const [user, setUser] = useState({});
+
+  useEffect(() => {
+    let token = localStorage.getItem('token');
+    axios
+      .get('http://localhost:3001/getUser', {
+        headers: {
+          token: token,
+        },
+      })
+      .then((res) => {
+        setUser(res.data);
+      });
+  }, []);
+
   return (
     <div className='App'>
       <Router>
-        {localStorage.getItem('token') ? <Header /> : null}
+        <Header />
         <Switch>
           <Route exact path='/'>
             <Login />
@@ -25,7 +42,7 @@ function App() {
             <GameWindow />
           </Route>
           <Route path='/shop'>
-            <Shop />
+            <Shop gold={user.gold}/>
           </Route>
           <Route path='/arena'>
             <Arena />

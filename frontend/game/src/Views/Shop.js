@@ -3,9 +3,10 @@ import ShopItems from '../Assets/shop.json';
 import ShopItem from '../Components/ShopItem';
 import styles from '../Styles/Shop.module.css';
 
-function Shop() {
+function Shop({ gold }) {
   return (
-    <main>
+    <main className={styles.center}>
+      <h3 className={styles.gold}>{gold} 💰</h3>
       <div className={styles.items_container}>
         {ShopItems.filter((item) => item.type === 'Weapon').map((item) => (
           <ShopItem

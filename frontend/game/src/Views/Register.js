@@ -1,16 +1,15 @@
 import RegisterForm from '../Components/RegisterForm';
 import { Link } from 'react-router-dom';
-import styles from '../Styles/Register.module.css';
+import styles from '../Styles/Login.module.css';
 
 function Register() {
   return (
-    <div>
-      <h3 className={styles.testas}>Register</h3>
-      <RegisterForm />
-      <p>
-        Already have an account? <Link to='/'>Login</Link>
-      </p>
-    </div>
+    <main className={styles.login_main}>
+      <h1>Register and begin your journey</h1>
+      <div className={styles.container}>
+        <RegisterForm />
+      </div>
+    </main>
   );
 }
 

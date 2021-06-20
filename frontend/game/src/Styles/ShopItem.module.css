@@ -2,13 +2,44 @@
   min-width: 15%;
   display: flex;
   flex-direction: column;
-  padding: 10px;
+  align-items: center;
+  padding: 15px;
+  border: 5px solid rgb(233, 204, 141);
+  background-color: rgb(255, 239, 195);
+  margin: 10px;
 }
 
 .item_image {
-  width: 150px;
-  height: 150px;
+  width: 120px;
+  height: 120px;
   background-position: center;
   background-size: contain;
   background-repeat: no-repeat;
+}
+
+.item_name {
+  font-family: 'MedievalSharp', cursive;
+  margin: 10px 0;
+}
+
+.buy_button {
+  font-family: 'MedievalSharp', cursive;
+  font-size: 1em;
+  padding: 5px 15px;
+  margin-top: 15px;
+  border: 5px solid rgb(233, 204, 141);
+  background-color: rgb(255, 239, 195);
+}
+
+.buy_button:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+}
+
+.error_message {
+  font-size: 1em;
+  padding: 5px 15px;
+  position: fixed;
+  color: red;
+  background-color: rgb(255, 239, 195);
 }

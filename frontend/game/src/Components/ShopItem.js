@@ -86,11 +86,15 @@ function ShopItem({
         className={styles.item_image}
         style={{ backgroundImage: `url(${image})` }}
       ></div>
-      <p>{name}</p>
-      <button disabled={userHasItem} onClick={handleClick}>
+      <p className={styles.item_name}>{name}</p>
+      <button
+        className={styles.buy_button}
+        disabled={userHasItem}
+        onClick={handleClick}
+      >
         {button}
       </button>
-      <p className={styles.errorMessage}>{errorMessage}</p>
+      <p className={styles.error_message}>{errorMessage}</p>
       <ReactTooltip />
     </div>
   );

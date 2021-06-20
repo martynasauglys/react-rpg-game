@@ -26,9 +26,17 @@ function Header() {
     <header>
       <div className={styles.header_container}>
         <div className={styles.header_home_btn}>
-          <Link to='/game-window'>HOME</Link>
+          {localStorage.getItem('token') ? (
+            <Link to='/game-window'>HOME</Link>
+          ) : (
+            <Link to='/register'>Register</Link>
+          )}
         </div>
-        <button onClick={handleClick}>Logout</button>
+        {localStorage.getItem('token') ? (
+          <button onClick={handleClick}>Logout</button>
+        ) : (
+          ''
+        )}
       </div>
     </header>
   );

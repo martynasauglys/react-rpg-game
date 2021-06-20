@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import InventoryItemSell from '../Components/InventoryItemSell';
+import styles from '../Styles/Shop.module.css';
 
 function Inventory() {
   const [inventory, setInventory] = useState([]);
@@ -26,14 +27,47 @@ function Inventory() {
   return (
     <main>
       Inventory
-      <div>
-        {inventory.map((item) => (
-          <InventoryItemSell
-            name={item.name}
-            sellPrice={item.sellPrice}
-            id={item.id}
-          />
-        ))}
+      <div className={styles.items_container}>
+        {inventory
+          .filter((item) => item.type === 'Weapon')
+          .map((item) => (
+            <InventoryItemSell
+              key={item.id}
+              id={item.id}
+              type={item.type}
+              name={item.name}
+              sellPrice={item.sellPrice}
+              image={item.image}
+            />
+          ))}
+      </div>
+      <div className={styles.items_container}>
+        {inventory
+          .filter((item) => item.type === 'Armor')
+          .map((item) => (
+            <InventoryItemSell
+              key={item.id}
+              id={item.id}
+              type={item.type}
+              name={item.name}
+              sellPrice={item.sellPrice}
+              image={item.image}
+            />
+          ))}
+      </div>
+      <div className={styles.items_container}>
+        {inventory
+          .filter((item) => item.type === 'Potion')
+          .map((item) => (
+            <InventoryItemSell
+              key={item.id}
+              id={item.id}
+              type={item.type}
+              name={item.name}
+              sellPrice={item.sellPrice}
+              image={item.image}
+            />
+          ))}
       </div>
     </main>
   );

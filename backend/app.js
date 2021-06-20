@@ -23,5 +23,5 @@ app.use(bodyParser.json());
 app.use('/', routes);
 
 app.listen(port, () => {
-  console.log(`server running on ${port} and yo mama is phat`);
+  console.log(`server running on ${port} boi`);
 });

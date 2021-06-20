@@ -5,8 +5,16 @@
 
 .navigation_container a {
   margin-bottom: 10px;
+  padding: 10px 15px;
   text-decoration: none;
+  text-align: center;
   color: black;
   font-size: 2em;
   font-family: 'MedievalSharp', cursive;
+  border: 5px solid rgb(233, 204, 141);
+  background-color: rgb(255, 239, 195);
+}
+
+.navigation_container a:hover {
+  transform: scale(1.1);
 }
