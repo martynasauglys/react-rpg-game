@@ -30,7 +30,6 @@ const UserSchema = new mongoose.Schema({
     {
       enemy: String,
       userWon: Boolean,
-      timeStamp: Number,
     },
   ],
   sessionTokens: [

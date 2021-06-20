@@ -22,7 +22,6 @@ function Inventory() {
 
   return (
     <main>
-      Inventory
       <div className={styles.items_container}>
         {inventory
           .filter((item) => item.type === 'Weapon')

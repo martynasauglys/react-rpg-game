@@ -46,9 +46,3 @@
 .lost {
   color: rgb(233, 88, 88);
 }
-
-.user_dead_box {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}

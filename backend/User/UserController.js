@@ -2,7 +2,6 @@ const mongoose = require('mongoose');
 const User = require('./UserModel');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-const { getAlgorithms } = require('json-web-token');
 
 const signUp = async (req, res) => {
   let user = new User(req.body);

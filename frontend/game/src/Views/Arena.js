@@ -14,7 +14,6 @@ function Arena() {
   const [enemyHealth, setEnemyHealth] = useState(100);
   const [userHealth, setUserHealth] = useState(0);
   const [inventory, setInventory] = useState([]);
-  const [attackHappening, setAttackHappening] = useState(false);
   const [selectedWeapon, setSelectedWeapon] = useState(0);
   const [selectedArmor, setSelectedArmor] = useState(0);
   const [playerWon, setPlayerWon] = useState(false);
@@ -51,8 +50,6 @@ function Arena() {
     let userAttDamage;
     let userDeffence = selectedArmor;
     let enemyAttDamage;
-
-    setAttackHappening(true);
 
     if (userHealth < 0) {
       setPlayerWon(false);
@@ -103,10 +100,12 @@ function Arena() {
     }
 
     setEnemyHealth(enemyHealth - userAttDamage);
-    console.log(userAttDamage, enemyAttDamage);
 
-    setUserHealth(userHealth - enemyAttDamage + userDeffence);
-    setAttackHappening(false);
+    if (userDeffence > enemyAttDamage) {
+      return;
+    } else {
+      setUserHealth(userHealth - enemyAttDamage + userDeffence);
+    }
 
     setTimeout(() => {
       setSpecialMessage('');
@@ -233,11 +232,7 @@ function Arena() {
                   ></div>
                 ))}
             </div>
-            <button
-              className={styles.attack_button}
-              onClick={handleAttack}
-              disabled={attackHappening}
-            >
+            <button className={styles.attack_button} onClick={handleAttack}>
               Attack!
             </button>
           </div>
