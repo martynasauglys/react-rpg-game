@@ -19,6 +19,8 @@ function Arena() {
   const [playerWon, setPlayerWon] = useState(false);
   const [gameOver, setGameOver] = useState(false);
   const [specialMessage, setSpecialMessage] = useState('');
+  const [weaponMsg, setWeaponMsg] = useState('No weapon selected');
+  const [armorMsg, setArmorMsg] = useState('No armor selected');
 
   useEffect(() => {
     let randomEnemy = Enemies[Math.floor(Math.random() * Enemies.length)];
@@ -38,12 +40,14 @@ function Arena() {
       });
   }, [token]);
 
-  function setWeapon(id) {
+  function setWeapon(id, name) {
     setSelectedWeapon(id);
+    setWeaponMsg(`${name} selected as weapon`);
   }
 
-  function setArmor(id, def) {
+  function setArmor(id, def, name) {
     setSelectedArmor(def);
+    setArmorMsg(`${name} selected as armor`);
   }
 
   function handleAttack() {
@@ -200,7 +204,7 @@ function Arena() {
                   <div
                     className={styles.item_image}
                     style={{ backgroundImage: `url(${item.image})` }}
-                    onClick={() => setArmor(item.defence, item.id)}
+                    onClick={() => setArmor(item.defence, item.id, item.name)}
                   ></div>
                 ))}
             </div>
@@ -214,7 +218,7 @@ function Arena() {
                   <div
                     className={styles.item_image}
                     style={{ backgroundImage: `url(${item.image})` }}
-                    onClick={() => setWeapon(item.id)}
+                    onClick={() => setWeapon(item.id, item.name)}
                   ></div>
                 ))}
             </div>
@@ -242,6 +246,10 @@ function Arena() {
           image={enemy.image}
           name={enemy.name}
         />
+      </div>
+      <div className={styles.weapons_selected_box}>
+        <p>{weaponMsg}</p>
+        <p>{armorMsg}</p>
       </div>
       {gameOver ? (
         <div className={styles.popup}>
