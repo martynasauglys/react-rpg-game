@@ -13,7 +13,7 @@ router.get('/getUser', UserMiddleware.authenticate, UserController.getUserData);
 router.get('/getAllUsers', UserController.getAllUsers);
 router.get('/user/:id', UserController.getUser);
 
-//
+// Updates routes
 router.put('/buyItem', UserMiddleware.authenticate, UserController.userBuyItem);
 router.put(
   '/sellItem',

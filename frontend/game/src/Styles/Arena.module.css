@@ -86,6 +86,11 @@
   align-items: center;
 }
 
+.weapons_msg {
+  font-family: 'MedievalSharp', cursive;
+  font-size: 1em;
+}
+
 /* popup */
 .popup {
   position: fixed;

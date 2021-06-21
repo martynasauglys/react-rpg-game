@@ -14,7 +14,9 @@ function ArenaFighterCard({ image, name, health }) {
         style={{ backgroundImage: `url(${image})` }}
       ></div>
       <h2 className={styles.name}>{name}</h2>
-      <div className={styles.health_bar} ref={healthbar}></div>
+      <div className={styles.health_bar_container}>
+        <div className={styles.health_bar} ref={healthbar}></div>
+      </div>
     </div>
   );
 }

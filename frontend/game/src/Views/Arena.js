@@ -193,7 +193,7 @@ function Arena() {
           image={user.image}
           name={user.username}
         />
-        <p className={styles.special_message}>{specialMessage}</p>
+        {/* <p className={styles.special_message}>{specialMessage}</p> */}
         <div className={styles.controls_box}>
           <div>
             <h2>Armor</h2>
@@ -248,8 +248,8 @@ function Arena() {
         />
       </div>
       <div className={styles.weapons_selected_box}>
-        <p>{weaponMsg}</p>
-        <p>{armorMsg}</p>
+        <p className={styles.weapons_msg}>{weaponMsg}</p>
+        <p className={styles.weapons_msg}>{armorMsg}</p>
       </div>
       {gameOver ? (
         <div className={styles.popup}>
