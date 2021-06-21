@@ -193,7 +193,7 @@ function Arena() {
           image={user.image}
           name={user.username}
         />
-        {/* <p className={styles.special_message}>{specialMessage}</p> */}
+        <p className={styles.special_message}>{specialMessage}</p>
         <div className={styles.controls_box}>
           <div>
             <h2>Armor</h2>
